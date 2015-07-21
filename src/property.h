@@ -2,13 +2,12 @@
 #define PROPERTY_H
 
 #include "../include/defs.h"
-
 #include <set>
 
 class Property;
 class Attribute;
 
-typedef std::set<Property> PropertieSet;
+typedef std::set<Property> PropertySet;
 typedef std::set<Attribute> AttributeSet;
 
 struct Attribute{
@@ -19,13 +18,10 @@ struct Attribute{
 
 class Property{
 
-	struct PropertyPrivateData{
-		//sub properties
-        PropertieSet props;
+        PropertySet props;
 
         AttributeSet  attrs;
 
-	} * data;
 
 	public:
 		Property(){
