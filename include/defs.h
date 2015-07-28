@@ -2,8 +2,11 @@
 #define DEFS_H
 
 #include <iostream>
+#ifndef USING_BOOST
+#include <locale>
+#include <codecvt>
+#endif
+#include <string>
 
-typedef std::string Address;
-typedef std::string Identifier;
-typedef std::string Value;
+#define NOT_YET_IMPLEMENTED	throw std::logic_error("Not yet implemented.");
 #endif

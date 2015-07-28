@@ -2,22 +2,43 @@ cmake_minimum_required (VERSION 2.8)
 
 project (tg)
 
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall")
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+CHECK_CXX_COMPILER_FLAG("-ggdb" COMPILER_SUPPORTS_GGDB)
+
+if(COMPILER_SUPPORTS_CXX11)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+elseif(COMPILER_SUPPORTS_CXX0X)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+else()
+	message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+
+if(COMPILER_SUPPORTS_GGDB)
+#Here set debug c++ flags.
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb")
+else()
+	message("Can not generate debug symbols. Please use different C++ compiler.")
+endif()
+#Here set release c++ flags.
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ")
 
 set (TG_VERSION_MAJOR 0)
 set (TG_VERSION_MINOR 1)
 
+option(UseBoost "UseBoost" ON)
+
 if (CMAKE_BUILD_TYPE MATCHES Debug)
-    message("Debug build.")
+    message(" >> Debug build. << ")
     set(bindir ${CMAKE_BINARY_DIR}/bin/debug)
     set(libdir ${CMAKE_BINARY_DIR}/lib/debug)
 elseif(CMAKE_BUILD_TYPE MATCHES Release)
-    message("Release build.")
+    message(">> Release build. <<")
     set(bindir ${CMAKE_BINARY_DIR}/bin/release)
     set(libdir ${CMAKE_BINARY_DIR}/lib/release)
 else()
-    message("No given build type. Debug build.")
+    message("-- No given build type. Debug build. --")
     set(bindir ${CMAKE_BINARY_DIR}/bin/debug)
     set(libdir ${CMAKE_BINARY_DIR}/lib/debug)
 endif()
@@ -36,7 +57,22 @@ SET(CMAKE_CACHEFILE_DIR ${bindir})
 configure_file ( "src/tg_config.h.in"
                  "src/tg_config.h"
                )
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+     # using Clang
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+     # using GCC
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
+     # using Intel C++
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+   # using Visual Studio C++
+endif()
 
+if(UseBoost)
+	message(">> Using BOOST Library! <<")
+	find_package( Boost 1.47 COMPONENTS locale REQUIRED )
+	include_directories( ${BOOST_INCLUDE_DIRS} )
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSING_BOOST")
+endif()
 add_subdirectory(src)
 
 target_include_directories(tg PUBLIC include)

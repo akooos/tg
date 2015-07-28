@@ -11,9 +11,6 @@ class Group{
    Identifier nm;
    PropertySet props;
    GroupSet    grps;
-   
-
-   
 };
 
 

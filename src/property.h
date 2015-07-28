@@ -1,31 +1,31 @@
 #ifndef PROPERTY_H
 #define PROPERTY_H
 
-#include "../include/defs.h"
 #include <set>
 
-class Property;
-class Attribute;
+#include "identifier.h"
+#include "value.h"
 
-typedef std::set<Property> PropertySet;
-typedef std::set<Attribute> AttributeSet;
+namespace Tg{
 
-struct Attribute{
+	struct Attribute{
 
-		Identifier nm;
-		Value      val;
-};
+		Tg::Identifier nm;
+		Tg::Value      val;
+	};
 
-class Property{
+	typedef std::set<Attribute> AttributeSet;
 
-        PropertySet props;
+	struct Property {
 
-        AttributeSet  attrs;
-
-
-	public:
+		typedef std::set<Property> PropertySet;
+		PropertySet props;
+		AttributeSet  attrs;
 		Property(){
 		}
-};
+
+	};
+
+}
 
 #endif
