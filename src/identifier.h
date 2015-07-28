@@ -2,7 +2,10 @@
 #define IDENTIFIER_H
 
 #include "converters.h"
+#ifdef USING_BOOST
+#include <boost/locale.hpp>
 
+#endif
 namespace Tg{
 
    class Identifier : public ConverterString{
@@ -10,7 +13,7 @@ namespace Tg{
 	   std::string data;
 
    public:
-	     explicit Identifier(std::string &id):data(id){}
+	     explicit Identifier(const std::string &id):data(id){}
 
 
 	std::string toStdString() const{ 
@@ -18,6 +21,12 @@ namespace Tg{
 	}
 	std::wstring toWideString() const{
 
+#ifdef USING_BOOST
+       return boost::locale::conv::to_utf<wchar_t>(data,"ISO-8859-2");
+#else 
+#error "Ops no implementation other than boost..."
+
+#endif
 		return std::wstring(L"");
 	}
 	std::string toUtf8() const{

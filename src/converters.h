@@ -44,6 +44,6 @@ struct ConverterNumber
 		NOT_YET_IMPLEMENTED
 		return 0;
 	}
-}
+};
 
 #endif
