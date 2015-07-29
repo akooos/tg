@@ -31,6 +31,7 @@ int main(int argc, char** argv){
     std::wcout << s.size() << std::endl;
     std::wcout << s.length() << std::endl;
     std::cout << s[0] << std::endl;
+    std::cout << sizeof(s[0])<< std::endl;
     std::wcout << s << std::endl;
     
     return EXIT_SUCCESS;
