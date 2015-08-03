@@ -1,4 +1,4 @@
-from logic.structs import Project,Tag,TagProperty,TagSet,TagStruct,TagType;
+from src.logic.structs import Project,Tag,TagProperty,TagSet,TagStruct,TagType;
 
 
 def main():

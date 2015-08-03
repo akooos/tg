@@ -1,26 +1,26 @@
 class AttributeType:
-    __init__():
+    def __init__(self):
         self.name=""
         self.valueType=""
         self.appliedFor=[]
         self.possiblevalues=[]
 
 class BaseTagType:
-    __init__(name="",length=0):
+    def __init__(self,name="",length=0):
         __name=name
         __length=length
 class TagSystem:
-    __init__(name):
+    def __init__(self,name):
         self.name = name
-    def getSupportedTagTypes():
+    def getSupportedTagTypes(self):
         return []
-    def getSupportedAttributes():
+    def getSupportedAttributes(self):
         return []
-    def getTagTypeDesc(tagtypename, lang=""):
+    def getTagTypeDesc(self,tagtypename, lang=""):
         return ""
-    def getAttributeDesc(attr,lang=""):
+    def getAttributeDesc(self,attr,lang=""):
         return ""
-    def export(project,path):
+    def save(self,project,path):
         return False
-    def import(path,project):
+    def load(self,path,project):
         return False 
