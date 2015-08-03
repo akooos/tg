@@ -13,9 +13,9 @@ class TagSystem:
     def __init__(self,name):
         self.name = name
     def getSupportedTagTypes(self):
-        return []
-    def getSupportedAttributes(self):
-        return []
+        return set()
+    def getSupportedAttributes(self,type):
+        return set()
     def getTagTypeDesc(self,tagtypename, lang=""):
         return ""
     def getAttributeDesc(self,attr,lang=""):
