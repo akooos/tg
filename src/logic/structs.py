@@ -2,10 +2,10 @@
 Property has attirubtes, holds further properties
 Applies to tags, or/and structures, groups in the system. 
 """
-class Property:
-    __init__():
+class TagProperty:
+    def __init__(self):
         self.name  = ""
-        self.props = Set([])
+        self.props = set()
         self.attrs = {}
 """
 Represents a tag in the system.
@@ -13,41 +13,45 @@ Represents a tag in the system.
 Note that which group it belongs, is a property 
 """
 class Tag:
-    __init__(name,address,tagtype):
+    def __init__(self, name,address,tagtype):
         self.name  = name
         self.addr  = address
         self.tagtype   = tagtype
-        self.props = Set([])
+        self.props = set()
 """
 Set of tags with the same properties.
 Name is optional.
 """
 class TagSet:
-    __init__(name=""):
+    def __init__(self,name=""):
         self.name=name
-        self.props = Set([])
-        self.tags  = Set([])
+        self.props = set()
+        self.tags  = set()
 """
 Represents primitive type 
 """
 class TagType:
-    __init__(name,basetype,props=Set([])):
+    def __init__(self,name,basetype,props=set()):
         self.__name = name
         self.__basetype = basetype
         self.props = props
 """
 """
 class TagStruct(TagType):
-    __init__(name="")
+    def __init__(self,name=""):
         self.parts = []
 """
 Represent a tag generator project
 """
 class Project:
-    __init__():
-        self.props = Set([])
+    def load(self):
+        self.props = set()
         self.name  = ""
         self.tagsystem = ""
-        self.tagtypes = Set([])
-        self.tagsets  = Set([])
-        self.tags     = Set([])
+        self.tagtypes = set()
+        self.tagsets  = set()
+        self.tags     = set()
+
+    def __init__(self,locpath):
+        self.location=locpath
+        self.load()

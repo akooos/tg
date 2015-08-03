@@ -20,7 +20,7 @@ class TagSystem:
         return ""
     def getAttributeDesc(attr,lang=""):
         return ""
-    def export(project):
+    def export(project,path):
         return False
-    def import(filepath):
-        return Project() 
+    def import(path,project):
+        return False 
