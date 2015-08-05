@@ -1,0 +1,2 @@
+#define TG_VERSION_MAJOR 0
+#define TG_VERSION_MINOR 1
