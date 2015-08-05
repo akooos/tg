@@ -2,7 +2,7 @@
 
 Tg stands for tag generator.
 
-Collection of python scripts that creates 
+Creates 
 special formatted files 
 for HMI/SCADA systems like WinCC, Intouch etc from an input file 
 that declares "tags", "types" "structures"....
