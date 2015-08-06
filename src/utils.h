@@ -3,11 +3,12 @@
 
 #include "../include/defs.h"
 namespace Tg{
-
+#ifdef USING_UNICODE
 typedef std::string UTF8Str;
 typedef std::u16string UTF16Str;
 typedef std::u32string UTF32Str; 
 typedef std::wstring UTFWStr; 
+#endif
 
 namespace Utils{
 	/*!

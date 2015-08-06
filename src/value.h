@@ -5,17 +5,19 @@
 
 namespace Tg {
 
+  class Evaluable : public ConverterString, ConverterNumber{ };
+
   template <class T>
-  class Value : public ConverterString, ConverterNumber{
+  class Value : public Evaluable {
 
 	 T data; 
-     Value(){}
+         Value(){}
 
 	 public:
-	   Value (const T &data ):data(data){}
-	   Value( const Value &other){			
+	   Value(const T &data ):data(data){}
+           value( const Value &other){			
 			data = other.data;
-	   }		   
+	   }	   
 	   Value & operator =(const Value &other){
 	   		if ( this != &other ){
 				data = other.data;
