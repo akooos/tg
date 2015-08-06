@@ -13,6 +13,7 @@ struct ConverterString{
 		NOT_YET_IMPLEMENTED 
 		return	std::string(""); 
 	}
+#ifdef USING_UNICODE
 	std::wstring toWideString() const{
 		NOT_YET_IMPLEMENTED
 		return std::wstring(L"");
@@ -29,6 +30,7 @@ struct ConverterString{
 		NOT_YET_IMPLEMENTED
 		return std::u32string(U"");
 	}
+#endif
 };
 struct ConverterNumber
 {

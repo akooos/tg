@@ -28,7 +28,7 @@ namespace Utils{
 	   ws.assign(s.begin(), s.end());
 	   return ws;
 	}
-
+#ifdef USING_UNICODE
 #ifdef USING_BOOST
 	Tg::UTF8Str stdStrToUtf8(const std::string &str,const std::string & encoding_from = "ISO-8859-2" ){
 		return (std::string) boost::locale::conv::to_utf<char>(str,encoding_from);
@@ -87,6 +87,7 @@ namespace Utils{
 		return converter.from_bytes(str);
 	}
 
+#endif
 #endif
 }
 
