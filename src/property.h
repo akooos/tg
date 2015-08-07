@@ -7,25 +7,23 @@
 #include "value.h"
 
 namespace Tg{
+    struct Parameter{
+        Identifier id;
+        Evaluable value;
+        Parameter(const Identifier &id, const Evaluable &value):id(id),value(value){
 
-	struct Attribute{
+        }
+    };
 
-		Tg::Identifier nm;
-		Tg::Value      val;
-	};
+    typedef std::set<Parameter> ParameterSet;
 
-	typedef std::set<Attribute> AttributeSet;
+    struct Property;
+    typedef std::set<Property> PropertySet;
 
-	struct Property {
-
-		typedef std::set<Property> PropertySet;
-			PropertySet props;
-			AttributeSet  attrs;
-			Property(){
-			}
-
-	};
-
+    struct Property{
+        PropertySet props;
+        ParameterSet pars;
+    };
 }
 
 #endif

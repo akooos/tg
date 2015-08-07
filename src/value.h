@@ -11,11 +11,11 @@ namespace Tg {
   class Value : public Evaluable {
 
 	 T data; 
-         Value(){}
+         Value():Evaluable(){}
 
 	 public:
-	   Value(const T &data ):data(data){}
-           value( const Value &other){			
+	   Value(const T &data ):Evaluable(),data(data){}
+           Value( const Value &other){			
 			data = other.data;
 	   }	   
 	   Value & operator =(const Value &other){
@@ -23,9 +23,28 @@ namespace Tg {
 				data = other.data;
 			}
 	   }
-	   
-	
   };
+
+  template<>
+  class Value<std::string> : public Evaluable{
+
+      std::string data; 
+      Value(){}
+
+	 public:
+	   Value(const std::string &data ):Evaluable(),data(data){}
+       Value( const Value &other){			
+			data = other.data;
+	   }	   
+	   Value & operator =(const Value &other){
+	   		if ( this != &other ){
+				data = other.data;
+			}
+            return *this;
+	   }
+	  
+  };
+
 }
 
 #endif

@@ -13,7 +13,7 @@ namespace Tg{
 
 		public:
 
-		explicit Identifier(const std::string &id):data(id){}
+		Identifier(const std::string &id):data(id){}
 
 		std::string toStdString() const{ 
 			return data; 
