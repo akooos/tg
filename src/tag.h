@@ -1,14 +1,16 @@
 #ifndef TAG_H
 #define TAG_H
-#include <vector>
+
 #include "property.h"
 
 namespace Tg{
-class Tag{
-    Identifier name;
-    PropertySet props;
+  class Tag : public PropertyHandler{
+    
+    
+  public:
+  
 };
-typedef std::vector<Tag> TagVector;
+typedef std::deque<Tag> TagList;
 
 }
 

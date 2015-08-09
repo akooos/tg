@@ -1,7 +1,6 @@
 #ifndef TAGTYPE_H
 #define TAGTYPE_H
 
-#include <vector>
 #include "property.h"
 
 namespace Tg{
@@ -11,10 +10,17 @@ namespace Tg{
         size_t len;
     };
 
-    class TagTypeAlias : public TagType{
+    class TagTypeAlias : public TagType, public PropertyHandler{
         Identifier baseType;
-        PropertySet props;
-
+        
+    public:
+      TagTypeAlias(const Identifier & baseTypeId ):baseType(baseTypeId){
+        
+      }
+      
+      const Identifier & getBaseType() const{
+        return baseType;
+      }
     };
 
     typedef std::vector<TagType> TagTypeVector;

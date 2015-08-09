@@ -3,45 +3,29 @@
 
 #include "group.h"
 #include "property.h"
-namespace Tg{
+namespace Tg
+{
 
-class Project{
-        Identifier name;
-        PropertySet props;
-        GroupVector groups;
-        public:
+class Project : public PropertyHandler
+{
 
-            Project(){
-            }
-            /*!
-             * Clears container, will be an empty project.
-             */
-            void clear(){
-            }
+    GroupList groups;
+public:
 
-            void setName(const Identifier &name){
-                this.name = name;
-            }
-
-            const Identifier & getName() const{
-                return this.name;
-            }
-            void setProperty(const Property & property){
-                props.push_back(property);
-
-            }
-            const Property & getProperty(const Identifier &id) const{
-                PropertySet::const_iterator it =  props.find(id);
-
-                if ( props.end() != it ){
-                    return *it;
-                }
-
-                E_DATA_NOT_FOUND
-
-            }
+    Project() {
+    }
+    /*!
+     * Clears container, will be an empty project.
+     */
+    void clear() {
+        lsProps.clear();
+        groups.clear();
+        id = "";
+    }
 
 
-    };
+
+
+};
 }
 #endif

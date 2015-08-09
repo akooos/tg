@@ -6,6 +6,8 @@
 namespace Tg {
 
   class Evaluable : public ConverterString, ConverterNumber{ };
+  
+  typedef std::deque<Evaluable> EvaluableList;
 
   template <class T>
   class Value : public Evaluable {
@@ -33,7 +35,7 @@ namespace Tg {
 
 	 public:
 	   Value(const std::string &data ):Evaluable(),data(data){}
-       Value( const Value &other){			
+	   Value( const Value &other){
 			data = other.data;
 	   }	   
 	   Value & operator =(const Value &other){
@@ -44,7 +46,7 @@ namespace Tg {
 	   }
 	  
   };
-
+  typedef Value<std::string> StdStrValue;
 }
 
 #endif

@@ -2,12 +2,20 @@
 #define DEFS_H
 
 #include <iostream>
+#include <set>
+#include <vector>
+#include <deque>
+#include <algorithm>
+#include <locale>
+#include <string>
+#include "../src/utils.h"
+#include "csingleton.h"
+
 
 #ifdef USING_UNICODE
     #ifdef USING_BOOST
         #include <boost/locale.hpp>
     #else
-        #include <locale>
         #include <codecvt>
     #endif
 #endif
@@ -16,4 +24,16 @@
 #include <stdexcept>
 #define NOT_YET_IMPLEMENTED	throw std::logic_error("Not yet implemented.");
 
+
+
+
+namespace Tg{
+  
+  
+ 
+namespace Exceptions{
+  const int E_ITEM_NOT_FOUND = -561;
+  const int E_UNSUPPORTED_TEXT_ENCODING = -700;
+}
+}
 #endif

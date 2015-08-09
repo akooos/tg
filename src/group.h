@@ -5,20 +5,19 @@
 
 namespace Tg{
 
-class Group; 
-typedef std::vector<Group> GroupVector;
+class Group;
+typedef std::deque<Group> GroupList;
 
 /*!
  * This group is not the same as a "tag group" in a system.
  * Just a group of tags with some same properties.
  * Tag group should be a property.
- *
  */
-class Group{
-        Identifier name;
-        PropertySet props;
-        TagVector tags;
-        GroupVector groups;
+class Group : public PropertyHandler{ 
+        TagList tags;
+        GroupList groups;
+    public:
+      
 };
 
 }

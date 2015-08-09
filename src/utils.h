@@ -10,7 +10,20 @@ typedef std::u32string UTF32Str;
 typedef std::wstring UTFWStr; 
 #endif
 
-namespace Utils{
+namespace {
+    
+    inline std::string  strToLower(std::string data)
+    {
+      std::transform(data.begin(), data.end(), data.begin(), ::tolower);
+      return data;
+    }
+    inline bool areStrsEqual(const std::string &str1, 
+                                                const std::string &str2
+                                              )
+    {
+        
+      return strToLower(str1) == strToLower(str2);
+    }
 	/*!
 	 * Only works for latin alphanums. Use UTF functions instead.
 	 */
@@ -93,4 +106,5 @@ namespace Utils{
 }
 
 }
+
 #endif
