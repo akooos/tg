@@ -1,9 +1,9 @@
-#ifndef INTOUCH_H
+﻿#ifndef INTOUCH_H
 #define INTOUCH_H
 
 #include "../tagsystem.h"
 
-
+#include "values.h"
 #include "../project.h"
 
 

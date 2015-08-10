@@ -114,9 +114,9 @@ public:
     
     const Identifier 	         & id,    
     const IdentifierSet      & appliedFor, 
-    const PropertyInfoList & subprops,    
-    const std::string       & desc = "",
-    const std::string       & defaultValue = ""
+    const PropertyInfoList & subprops,
+    const std::string       & defaultValue = "",
+    const std::string       & desc = ""
     
   ):PropertyInfo(id,appliedFor,defaultValue,desc),    
     subprops(subprops){

@@ -1,4 +1,4 @@
-#ifndef PROPERTY_H
+﻿#ifndef PROPERTY_H
 #define PROPERTY_H
 
 #include "identifier.h"
@@ -7,21 +7,22 @@
 namespace Tg{
   
   
-    class Property : public Evaluable{
+    class Property {
         Identifier id;	
         Evaluable value;
     public:
-        Property(const Identifier &id, const Evaluable &value):id(id),value(value){
-
-        }
+        Property(const Identifier &id, 
+			  const Evaluable &value):id(id),value(value){}
+			  
         const Identifier & getIdentifier() const{
-          return id;
+	  return id;
         }
         
     }; 
+    
     typedef std::deque<Property> PropertyList;
     
-    class PropertyHandler{
+    class PropertyHandler : public Evaluable{
       
       struct PropertyIdMatcher{
         const Identifier &id;
@@ -77,7 +78,7 @@ namespace Tg{
           returns the property on match, otherwise
        * throws an exception(Tg::Exceptions::E_ITEM_NOT_FOUND).
        */
-      const Property & isSupportedPropertyType(
+      const Property & getProperty(
         const Identifier &id) const
       {
         
@@ -95,6 +96,10 @@ namespace Tg{
        
     };
 
+    
+    class PropertyGroup : public PropertyHandler{
+      //TODO override Evaluable
+    };
 }
 
 

@@ -11,7 +11,7 @@ typedef std::deque<Group> GroupList;
 /*!
  * This group is not the same as a "tag group" in a system.
  * Just a group of tags with some same properties.
- * Tag group should be a property.
+ * Tag group should be a prperty.
  */
 class Group : public PropertyHandler{ 
         TagList tags;

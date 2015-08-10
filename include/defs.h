@@ -1,4 +1,4 @@
-#ifndef DEFS_H
+﻿#ifndef DEFS_H
 #define DEFS_H
 
 #include <iostream>
@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <locale>
 #include <string>
+#include <cassert>
 #include "../src/utils.h"
 #include "csingleton.h"
 
