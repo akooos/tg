@@ -1,4 +1,4 @@
-﻿#ifndef IDENTIFIER_H
+#ifndef IDENTIFIER_H
 #define IDENTIFIER_H
 
 #include "converters.h"

@@ -86,14 +86,14 @@ public:
 class PropertyInfoEnum : public PropertyInfo{
   /*! Possible values, this fields exists because of Enum property value type, 
    and for error checki*ng.*/
-  EvaluableList pvs;
+  StdStrValueList pvs;
   
 public:
   PropertyInfoEnum (
      
     const Identifier 	      & id,    
     const IdentifierSet   & appliedFor,    
-    const EvaluableList  & pvs,    
+    const StdStrValueList  & pvs,    
     const std::string    & desc = "",
     const std::string    & defaultValue = ""
     
@@ -102,7 +102,7 @@ public:
       pvt = Tg::TagSystems::Enum;
     }
   
-  const EvaluableList & getPossibleValues() const{
+  const StdStrValueList & getPossibleValues() const{
     return pvs;
   }
 };
@@ -176,11 +176,13 @@ class TagSystem : public FileHandler{
   };
   
     class PropertyInfoIdMatcher{
-      const Identifier &id;
+      const PropertyInfo &p;
     public:
-      PropertyInfoIdMatcher(const Identifier &id):id(id){}
+      PropertyInfoIdMatcher(const PropertyInfo &p):p(p){}
       bool operator() (const PropertyInfo &pi) const{
-        return id == pi.getName();
+        return pi.getName() == p.getName() 
+                                          &&
+                  pi.getPropertyValueType() == p.getPropertyValueType();
       }
     };
     
@@ -215,38 +217,32 @@ FileHandler(),name(name),desc(desc) {
       
       return true;
 	}
-	/*TagSystem & operator << (const TagBaseTypeInfo &p){
-      setTagBaseTypeInfo(p);
-      
-      return * (static_cast<TagSystem*>(this) );
-    }*/
-	
-	
 	
 	inline bool setPropertyInfo(		
-	  const Identifier &id,	
+	  const Identifier          &id,	
 	  PropertyValueType pvt,  
 	  const IdentifierSet    &appliedFor,
-	  const std::string &desc = "",
-      const std::string &defaultValue=""
+	  const std::string    &desc = "",
+      const std::string     &defaultValue=""
 	){	  
  	  return setPropertyInfo(PropertyInfo(id,pvt,appliedFor,desc,defaultValue));
 	}
 	
 	
 	inline bool setPropertyInfo(	
-	  const Identifier 	    & id,    
-	  const IdentifierSet   & appliedFor,    
-	  const EvaluableList  & pvs,
-	  const std::string    & desc = "",
-      const std::string    & defaultValue=""
+	  const Identifier 	      & id,    
+	  const IdentifierSet    & appliedFor,    	  
+	  const std::string     & desc,
+      const std::string     & defaultValue,
+      const StdStrValueList   & pvs
 	){	  
-      return 
-setPropertyInfo(PropertyInfoEnum(
-        id,
-        appliedFor,
-        pvs,
-        desc,defaultValue));
+      return setPropertyInfo(
+        PropertyInfoEnum(
+            id,
+            appliedFor,
+            pvs,
+            desc,defaultValue)
+         );
 	}
 
 	
@@ -276,10 +272,7 @@ setPropertyInfo(PropertyInfoEnum(
 	  return true;
         
 	}
-	/*TagSystem & operator << (const PropertyInfo &p){
-      setPropertyInfo(p);
-      return *this;
-	}*/
+	
 	void setName(const std::string & name){
 	  this->name = name;
 	}
@@ -291,23 +284,23 @@ public:
 	const PropertyInfoList & getSupportedPropertyTypes() const{
 	  return lsPI;
 	}
-	bool hasPropertyInfo(const Identifier &id) const{
+	/*bool hasPropertyInfo(const Identifier &id) const{
       PropertyInfoIdMatcher piim(id);
       
       PropertyInfoList::const_iterator it = 
       std::find_if(lsPI.begin(),lsPI.end(),piim);
       
       return ( lsPI.end() != it );
-    }
+    }*/
 	bool hasPropertyInfo(const PropertyInfo &prop) const{
-      PropertyInfoIdMatcher piim(prop.getName());
+      PropertyInfoIdMatcher piim(prop);
       
       PropertyInfoList::const_iterator it = 
       std::find_if(lsPI.begin(),lsPI.end(),piim);
       
       return ( lsPI.end() != it );
     }
-	const PropertyInfo & isSupportedPropertyType(const Identifier &id) 
+/*	const PropertyInfo & isSupportedPropertyType(const Identifier &id) 
 const{
 	  
         PropertyInfoIdMatcher piim(id);
@@ -319,7 +312,7 @@ const{
 	      return *it;
 	    
 	    throw Tg::Exceptions::E_ITEM_NOT_FOUND;
-	}
+	}*/
 	const TagBaseTypeInfoList & getSupportedTagTypes() const{
       return lsTTI;
     }
