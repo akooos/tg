@@ -98,9 +98,7 @@ public:
     const std::string    & defaultValue = ""
     
   ):PropertyInfo(id,appliedFor,defaultValue,desc),    
-    pvs(pvs){
-      pvt = Tg::TagSystems::Enum;
-    }
+  pvs(pvs),pvt(Tg::TagSystems::Enum){}
   
   const StdStrValueList & getPossibleValues() const{
     return pvs;
@@ -119,9 +117,7 @@ public:
     const std::string       & defaultValue = ""
     
   ):PropertyInfo(id,appliedFor,defaultValue,desc),    
-    subprops(subprops){
-      pvt = Tg::TagSystems::PropertyGroup;
-    }  
+  subprops(subprops),pvt(Tg::TagSystems::PropertyGroup){}  
   
   const PropertyInfoList & getSubProps() const{
     return subprops;
@@ -161,6 +157,9 @@ public:
 };
 typedef std::deque<TagBaseTypeInfo> TagBaseTypeInfoList;
 
+/*!
+ *  Base class of all type of tag systems. 
+ */
 
 class TagSystem : public FileHandler{
   

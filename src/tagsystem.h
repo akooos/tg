@@ -161,6 +161,9 @@ public:
 };
 typedef std::deque<TagBaseTypeInfo> TagBaseTypeInfoList;
 
+/*!
+ *  Base class of all type of tag systems. 
+ */
 
 class TagSystem : public FileHandler{
   

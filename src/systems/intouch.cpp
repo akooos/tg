@@ -1,5 +1,7 @@
 ﻿#include "intouch.h"
 
+#include <fstream>
+
 Tg::TagSystems::InTouch::InTouch() : Tg::TagSystems::TagSystem("InTouch")
 {
   
@@ -26,9 +28,9 @@ Tg::TagSystems::InTouch::InTouch() : Tg::TagSystems::TagSystem("InTouch")
   setPropertyInfo( "mode",
                             {"Project"},							
                             "Specifies how duplicate tag records are \
-                        handled when importing the contents of\
-                        the DBLoad file to an application’s\
-                        Tagname Dictionary.",
+                              handled when importing the contents of\
+                              the DBLoad file to an application’s\
+                              Tagname Dictionary.",
                             "ask",
                             { "ask","replace","update","ignore",
                               "terminate","test"}
@@ -744,15 +746,21 @@ setPropertyInfo( "InitialMessage",
 
 }
 void Tg::TagSystems::InTouch::load ( 
-			  const std::istream& strm, 
+			  std::ifstream& strm, 
 			  Tg::Project&	project,
 			  Tg::FileHandler::Encoding encoding )
-{
-  NOT_YET_IMPLEMENTED
+{  
+     
+  const size_t BUFFER_SIZE = 512;
+  char buffer[BUFFER_SIZE] = {0};
+  
+  strm.get(buffer,BUFFER_SIZE);  
+  strm.close();
+  
 }
 void Tg::TagSystems::InTouch::save ( 
 		const Tg::Project& project, 
-		std::ostream& strm, 
+		std::ofstream& strm, 
 		Tg::FileHandler::Encoding encoding )
 {
   NOT_YET_IMPLEMENTED

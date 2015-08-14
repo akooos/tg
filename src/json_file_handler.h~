@@ -7,7 +7,7 @@ namespace Tg{
   
 struct JSON_FileHandler : public FileHandler {
   
-   virtual void load(std::ifstream &strm,
+   virtual void load(const std::ifstream &strm,
                               Project &project, 
                               Encoding encoding = ANSI
                             );

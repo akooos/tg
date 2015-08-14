@@ -17,7 +17,7 @@ namespace TagSystems{
   public:
     
     virtual void load(
-        std::ifstream &strm,
+        const std::ifstream &strm,
         Tg::Project &project,
         Encoding encoding = ANSI);
     

@@ -22,7 +22,7 @@ namespace Tg{
       };
 #endif         
 	
-	virtual void load(std::ifstream &strm, 
+	virtual void load(const std::ifstream &strm, 
                                Project &project, 
                                Encoding encoding = ANSI
                               ) = 0;
