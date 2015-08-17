@@ -9,6 +9,9 @@
 #include <locale>
 #include <string>
 #include <cassert>
+#include <fstream>
+#include <array>
+
 #include "../src/utils.h"
 #include "csingleton.h"
 
@@ -23,16 +26,20 @@
 
 #include <string>
 #include <stdexcept>
-#define NOT_YET_IMPLEMENTED	throw std::logic_error("Not yet implemented.");
+#ifndef DEBUG
+#define NOT_YET_IMPLEMENTED throw std::logic_error("Not Yet Implemented!");
+#else
+#define NOT_YET_IMPLEMENTED	static_assert(0,"Not Yet Implemented!");
+#endif
 
 namespace Tg{
-  
-  
- 
+
+
+
 namespace Exceptions{
   const int E_ITEM_NOT_FOUND                         = -561;
   const int E_UNSUPPORTED_TEXT_ENCODING = -700;
-  const int E_STREAM_OPEN_ERROR                  = -500;
+  const int E_STREAM_READ_ERROR                  = -500;
 }
 }
 #endif
