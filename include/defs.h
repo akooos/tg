@@ -11,8 +11,7 @@
 #include <cassert>
 #include <fstream>
 #include <array>
-
-#include "../src/utils.h"
+#include <memory>
 #include "csingleton.h"
 
 
@@ -26,11 +25,7 @@
 
 #include <string>
 #include <stdexcept>
-#ifndef DEBUG
 #define NOT_YET_IMPLEMENTED throw std::logic_error("Not Yet Implemented!");
-#else
-#define NOT_YET_IMPLEMENTED	static_assert(0,"Not Yet Implemented!");
-#endif
 
 namespace Tg{
 

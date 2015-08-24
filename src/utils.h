@@ -16,6 +16,173 @@ typedef std::wstring UTFWStr;
 
 namespace {
 
+  template <  class Container, class T = typename Container::value_type >
+    std::ostream& printToStream (
+      std::ostream& out,
+      const Container & cntr )
+    {
+      if ( !cntr.empty() ) {
+
+              std::copy (cntr.begin(),
+                         cntr.end(),
+                         std::ostream_iterator<T>(out, " "));
+
+      }
+
+            return out;
+    }
+    template <  class Container, class T = typename Container::value_type >
+    void printCout(const Container & cntr){
+       printToStream<Container,T>(std::cout,cntr);
+       std::cout << std::endl;
+    }
+/*
+
+  template <  class Container, class T = typename Container::value_type >
+  std::ostream& operator<< (
+                std::ostream& out,
+                const Container & cntr )
+  {
+    if ( !cntr.empty() ) {
+      out << '[';
+      std::copy (cntr.begin(),
+                       cntr.end(),
+                       std::ostream_iterator<T>(out, ","));
+          out << "\b\b]";
+    }
+      return out;
+  }
+*/   std::string getline2(
+           std::istream &strm, 
+           const std::vector<char> &delimiter = {'\n'} 
+           )
+   {
+       std::string result;
+       char *buffer = new char;
+       size_t match_index = 0;
+
+       while( !(strm.eof() || strm.fail()) ){
+
+           strm.read(buffer,1);
+           if ( *buffer == delimiter[match_index] ){
+               if ( match_index == delimiter.size()-1 ){
+                    delete buffer;
+                    return result;
+               }else{
+                   ++match_index;
+               }
+
+           }else{
+                match_index = 0;
+                result.append(buffer,1);
+           }
+
+
+       }
+
+       delete buffer;
+       return result;
+
+
+   }
+
+
+   std::string getline(
+           std::istream &strm, 
+           const std::vector<char> &delimiter = {'\n'}, 
+           const std::size_t max_buffer_size = 1024
+           )
+   {
+       assert( max_buffer_size > 0 );
+       std::string result;
+
+       std::streampos pos = 0;
+      
+       typedef std::vector<char>::const_iterator _VecIterator;
+       char *buffer = new char[max_buffer_size+1];
+       
+       while( !(strm.eof() || strm.fail()) ){
+
+           pos = strm.tellg();
+           strm.read(buffer,max_buffer_size);
+           std::streamsize read_len = strm.gcount();
+           buffer[ read_len ] = '\0';
+           std::cout << "Buffer loaded =[" << buffer << "]"<< std::endl;
+           std::cout << "Read size " << (int)read_len << " B" << std::endl;
+           size_t i = 0,j = 0;
+           while( buffer[i] != '\0' ){
+               for(j = 0 ; j < delimiter.size(); ++j){
+                   if ( buffer[i+j] != delimiter[j] )
+                       break;
+               }
+               if ( j == delimiter.size() ){
+                   result.append(buffer,i);  
+                   if (strm.tellg()== -1 ){
+                       strm.clear();
+                   }
+
+                   std::streamoff offset =  pos + static_cast<long int>(i+delimiter.size());
+                   std::cout << "Seek pos by offset " << (int)  offset << std::endl;
+                   std::cout << "From tellg=" << strm.tellg() << std::endl;
+                   strm.seekg(offset,strm.beg) ;
+                   std::cout << "Changed to tellg=" << strm.tellg() << std::endl;
+                   delete[] buffer;
+                   return result;
+               }
+               ++i;
+           }
+
+           result.append(buffer);
+       }
+
+       delete[] buffer;
+       return result;
+
+
+   }
+
+   // template < std::size_t max_buffer_size = 1024>
+   // std::string getline(std::istream &strm, const std::vector<char> &delimiter = {'\n'} ){
+   //     std::string result;
+   //
+   //     std::istream_iterator<char> it_strm(strm);
+   //     std::istream_iterator<char> eos;
+   //     unsigned match_index = 0;
+   //    
+   //     typedef std::vector<char>::const_iterator _VecIterator;
+   //
+   //     while( it_strm != eos && !strm.fail() && result.size() < max_buffer_size ){
+   //
+   //         if ( *it_strm == delimiter[match_index] )
+   //             if ( match_index == delimiter.size()-1 )
+   //                 return result;
+   //             else
+   //                 ++match_index;
+   //         else
+   //             match_index = 0;
+   //
+   //         result.append(*it_strm,1);
+   //         ++it_strm;
+   //     }
+   //
+   //
+   // }
+   //     while( it_strm != eos && !strm.fail() && result.size() < max_buffer_size ){
+   //
+   //         if ( *it_strm == delimiter[match_index] )
+   //             if ( match_index == delimiter.size()-1 )
+   //                 return result;
+   //             else
+   //                 ++match_index;
+   //         else
+   //             match_index = 0;
+   //
+   //         result.append(*it_strm,1);
+   //         ++it_strm;
+   //     }
+   //
+   //
+   // }
    /*!
     *  Return
     */
@@ -27,7 +194,7 @@ namespace {
    {
 
         std::vector<char> result;
-        typedef typename std::array<char,buffer_size> _Buffer;
+        typedef typename std::vector<char> _Buffer;
         _Buffer b;
 
         if ( !strm.good() )
@@ -37,13 +204,18 @@ namespace {
         typename _Buffer::iterator it ;
         do{
 
-          b.fill(0);
-          strm.get(b.data(),buffer_size);
+          std::fill(b.begin(),
+                      b.end(),
+                      0);
 
-          //it = std::find(b.begin(),b.end(),0);
-          it = lpm.match(b.begin(),b.end()  );
+          b.insert(b.begin(),
+                       std::istreambuf_iterator<char>(strm),
+                       std::istreambuf_iterator <char>());
 
-          result.assign(b.begin(),it);
+          it = std::find(b.begin(),b.end(),0);
+          //it = lpm.match(b.begin(),b.end()  );
+
+          result.insert(result.end(),b.end(),it);
 
         }while( !strm.good() && it != b.end() );
 

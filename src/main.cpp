@@ -6,6 +6,7 @@
 
 
 #include <sstream>
+#include <list>
 
 int main(int argc, char** argv){
 
@@ -23,18 +24,22 @@ int main(int argc, char** argv){
     ss << "ot";
     ss << std::endl;
 
-    std::cout << "wtf" << std::endl;
-
-    do{
-      std::cout << "{1}" << std::endl;
-       std::vector<char>  result =
-Tg::getNextPart(ss,std::vector<char>() ={'\n'});
-std::cout << "{2}" << std::endl;
-        std::cout  << result.data() << std::endl;
 
 
-    }while( ss.good() );
+    std::string part = Tg::getline(ss);
+    std::cout  << "PART = " <<  part << std::endl;
+    part = Tg::getline(ss);
 
+    std::cout  << "PART = " <<part << std::endl;
+    part = Tg::getline(ss);
+
+    std::cout  << "PART = " <<part << std::endl;
+    part = Tg::getline(ss);
+
+    std::cout  << "PART = " <<part << std::endl;
+    part = Tg::getline(ss);
+
+    std::cout  << "PART = " <<part << std::endl;
     return EXIT_SUCCESS;
 }
 

@@ -16,6 +16,43 @@ typedef std::wstring UTFWStr;
 
 namespace {
 
+  template <  class Container, class T = typename Container::value_type >
+    std::ostream& printToStream (
+      std::ostream& out,
+      const Container & cntr )
+    {
+      if ( !cntr.empty() ) {
+
+              std::copy (cntr.begin(),
+                         cntr.end(),
+                         std::ostream_iterator<T>(out, " "));
+
+      }
+
+            return out;
+    }
+    template <  class Container, class T = typename Container::value_type >
+    void printCout(const Container & cntr){
+       printToStream<Container,T>(std::cout,cntr);
+       std::cout << std::endl;
+    }
+/*
+
+  template <  class Container, class T = typename Container::value_type >
+  std::ostream& operator<< (
+                std::ostream& out,
+                const Container & cntr )
+  {
+    if ( !cntr.empty() ) {
+      out << '[';
+      std::copy (cntr.begin(),
+                       cntr.end(),
+                       std::ostream_iterator<T>(out, ","));
+          out << "\b\b]";
+    }
+      return out;
+  }
+*/
    /*!
     *  Return
     */
@@ -27,7 +64,7 @@ namespace {
    {
 
         std::vector<char> result;
-        typedef typename std::array<char,buffer_size> _Buffer;
+        typedef typename std::vector<char> _Buffer;
         _Buffer b;
 
         if ( !strm.good() )
@@ -37,13 +74,18 @@ namespace {
         typename _Buffer::iterator it ;
         do{
 
-          b.fill(0);
-          strm.get(b.data(),buffer_size);
+          std::fill(b.begin(),
+                      b.end(),
+                      0);
+
+          b.insert(b.begin(),
+                       std::istreambuf_iterator<char>(strm),
+                       std::istreambuf_iterator <char>());
 
           //it = std::find(b.begin(),b.end(),0);
           it = lpm.match(b.begin(),b.end()  );
 
-          result.assign(b.begin(),it);
+          result.insert(result.end(),b.end(),it);
 
         }while( !strm.good() && it != b.end() );
 
