@@ -2,8 +2,6 @@
 #define INTOUCH_H
 
 #include "../tagsystem.h"
-
-#include "values.h"
 #include "../project.h"
 
 

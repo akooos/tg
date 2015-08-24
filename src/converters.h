@@ -1,7 +1,8 @@
 #ifndef CONVERTERS_H 
 #define CONVERTERS_H
 
-#include "../include/defs.h"
+#include "utils.h"
+
 /*! 
  *   \author Akos Toth 
  *   \email zuiadaton@gmail.com

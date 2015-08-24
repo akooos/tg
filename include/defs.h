@@ -1,20 +1,24 @@
-﻿#ifndef DEFS_H
+#ifndef DEFS_H
 #define DEFS_H
 
+#include <locale>
+#include <stdexcept>
+
 #include <iostream>
+#include <fstream>
+#include <string>
+
 #include <set>
 #include <vector>
 #include <deque>
-#include <algorithm>
-#include <locale>
-#include <string>
-#include <cassert>
-#include <fstream>
 #include <array>
+#include  <iterator>
 
-#include "../src/utils.h"
+#include <algorithm>
+
+#include <cassert>
+
 #include "csingleton.h"
-
 
 #ifdef USING_UNICODE
     #ifdef USING_BOOST
@@ -24,22 +28,20 @@
     #endif
 #endif
 
-#include <string>
-#include <stdexcept>
-#ifndef DEBUG
+
+#define ITT(s) std::cout << __FILE__ << ":" <<__LINE__ << std::endl << s << std::endl;
+//#ifndef DEBUG
 #define NOT_YET_IMPLEMENTED throw std::logic_error("Not Yet Implemented!");
-#else
-#define NOT_YET_IMPLEMENTED	static_assert(0,"Not Yet Implemented!");
-#endif
+//#else
+//#define NOT_YET_IMPLEMENTED	static_assert(0,"Not Yet Implemented!");
+//#endif
+
 
 namespace Tg{
-
-
-
-namespace Exceptions{
-  const int E_ITEM_NOT_FOUND                         = -561;
-  const int E_UNSUPPORTED_TEXT_ENCODING = -700;
-  const int E_STREAM_READ_ERROR                  = -500;
+  namespace Exceptions{
+    const int E_ITEM_NOT_FOUND                         = -561;
+    const int E_UNSUPPORTED_TEXT_ENCODING = -700;
+    const int E_STREAM_READ_ERROR                  = -500;
+  }
 }
-}
-#endif
+#endif // DEFS_H

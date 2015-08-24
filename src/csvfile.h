@@ -15,9 +15,9 @@ private:
   std::ifstream &strm;
   
   
-  const char s8_CR[1]      = {'\r'};
-  const char s8_LF[1]      = {'\n'};
-  const char s8_CRLF[2]  = {'\r','\n'};
+  const char s8_CR           = {0x0C};
+  const char s8_LF            = {0x0A};
+  const char s8_CRLF[2]   = {0x0C,0x0A};
   char *fieldPatter;
   char *linePatter;
   

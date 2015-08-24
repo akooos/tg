@@ -1,9 +1,11 @@
-﻿#ifndef UTILS_H
+#ifndef UTILS_H
 #define UTILS_H
 
 #include "../include/defs.h"
 #include "pattern_match.h"
 
+
+using  Tg::Exceptions::E_STREAM_READ_ERROR;
 
 namespace Tg{
 #ifdef USING_UNICODE
@@ -14,41 +16,45 @@ typedef std::wstring UTFWStr;
 #endif
 
 
+
 namespace {
 
+  
+   template <typename Container>
+    void print( const Container &container){
+      
+        for( 
+          typename Container::const_iterator it = container.begin(); 
+          it != container.end(); 
+          ++it ){
+              if ( it != container.begin() )
+                std::cout << ", ";
+              
+              std::cout << *it << std::endl;
+          }
+
+    }
    /*!
     *  Return
     */
-   template <std::size_t buffer_size = 512>
+/*
    std::vector<char> getNextPart(
-                                 std::istream &strm,
+                                 const std::iterator & it_begin,
+                                 const std::iterator & it_end,
                                  const std::vector<char> & pattern
                                 )
    {
 
+        LinearPatternMatch<char> lpm(pattern.begin(),pattern.end());
+
         std::vector<char> result;
-        typedef typename std::array<char,buffer_size> _Buffer;
-        _Buffer b;
 
-        if ( !strm.good() )
-          throw Tg::Exceptions::E_STREAM_READ_ERROR;
+        lpm.match(it_begin,it_end,it_end);
 
-        LinearPatternMatch<char, typename _Buffer::iterator> lpm(pattern);
-        typename _Buffer::iterator it ;
-        do{
-
-          b.fill(0);
-          strm.get(b.data(),buffer_size);
-
-          //it = std::find(b.begin(),b.end(),0);
-          it = lpm.match(b.begin(),b.end()  );
-
-          result.assign(b.begin(),it);
-
-        }while( !strm.good() && it != b.end() );
-
+        //result.insert(result.end(),it_begin,it);
+        return result;
    }
-
+*/
 
     inline std::string  strToLower(std::string data)
     {

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+   <FileVersion major="1" minor="6" />
+   <Project>
+      <Option title="tg" />
+      <Option makefile_is_custom="1" />
+      <Option compiler="gcc" />
+      <Option virtualFolders="CMake Files\;CMake Files\src\;" />
+      <Build>
+      <Target title="all">
+         <Option working_dir="/home/akos/Dokumentumok/Projects/tg" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="edit_cache">
+         <Option working_dir="/home/akos/Dokumentumok/Projects/tg" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="rebuild_cache">
+         <Option working_dir="/home/akos/Dokumentumok/Projects/tg" />
+         <Option type="4" />
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="tg">
+         <Option output="/home/akos/Dokumentumok/Projects/tg/bin/debug/tg" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/akos/Dokumentumok/Projects/tg/bin/debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/./include" />
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/PUBLIC" />
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/tg" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 tg" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="tg/fast">
+         <Option output="/home/akos/Dokumentumok/Projects/tg/bin/debug/tg" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/akos/Dokumentumok/Projects/tg/bin/debug" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/./include" />
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/PUBLIC" />
+            <Add directory="/home/akos/Dokumentumok/Projects/tg/tg" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 tg/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/akos/Dokumentumok/Projects/tg/src/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      </Build>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/include/defs.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/converters.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/csvfile.cpp">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/csvfile.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/main.cpp">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/pattern_match.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/systems/intouch.cpp">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/systems/intouch.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/utils.h">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\" />
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/tg_config.h.in">
+          <Option virtualFolder="CMake Files\src\" />
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/CMakeLists.txt">
+          <Option virtualFolder="CMake Files\src\" />
+      </Unit>
+   </Project>
+</CodeBlocks_project_file>
