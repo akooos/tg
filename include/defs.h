@@ -12,18 +12,15 @@
 #include <vector>
 #include <deque>
 #include <array>
+
 #include  <iterator>
 
 #include <algorithm>
 
 #include <cassert>
-<<<<<<< HEAD
-
-=======
 #include <fstream>
 #include <array>
 #include <memory>
->>>>>>> 82d5dfa2af3ab2da8f62480d89681352579b6291
 #include "csingleton.h"
 
 #ifdef USING_UNICODE
@@ -34,22 +31,9 @@
     #endif
 #endif
 
-<<<<<<< HEAD
-=======
-#include <string>
-#include <stdexcept>
-#define NOT_YET_IMPLEMENTED throw std::logic_error("Not Yet Implemented!");
-
-namespace Tg{
->>>>>>> 82d5dfa2af3ab2da8f62480d89681352579b6291
 
 #define ITT(s) std::cout << __FILE__ << ":" <<__LINE__ << std::endl << s << std::endl;
-//#ifndef DEBUG
 #define NOT_YET_IMPLEMENTED throw std::logic_error("Not Yet Implemented!");
-//#else
-//#define NOT_YET_IMPLEMENTED	static_assert(0,"Not Yet Implemented!");
-//#endif
-
 
 namespace Tg{
   namespace Exceptions{

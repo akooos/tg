@@ -16,8 +16,26 @@ typedef std::wstring UTFWStr;
 #endif
 
 
+
 namespace {
 
+<<<<<<< HEAD
+  
+   template <typename Container>
+    void print( const Container &container){
+      
+        for( 
+          typename Container::const_iterator it = container.begin(); 
+          it != container.end(); 
+          ++it ){
+              if ( it != container.begin() )
+                std::cout << ", ";
+              
+              std::cout << *it << std::endl;
+          }
+
+    }
+=======
   template <  class Container, class T = typename Container::value_type >
     std::ostream& printToStream (
       std::ostream& out,
@@ -143,8 +161,96 @@ namespace {
 
    }
 
+   // template < std::size_t max_buffer_size = 1024>
+   // std::string getline(std::istream &strm, const std::vector<char> &delimiter = {'\n'} ){
+   //     std::string result;
+   //
+   //     std::istream_iterator<char> it_strm(strm);
+   //     std::istream_iterator<char> eos;
+   //     unsigned match_index = 0;
+   //    
+   //     typedef std::vector<char>::const_iterator _VecIterator;
+   //
+   //     while( it_strm != eos && !strm.fail() && result.size() < max_buffer_size ){
+   //
+   //         if ( *it_strm == delimiter[match_index] )
+   //             if ( match_index == delimiter.size()-1 )
+   //                 return result;
+   //             else
+   //                 ++match_index;
+   //         else
+   //             match_index = 0;
+   //
+   //         result.append(*it_strm,1);
+   //         ++it_strm;
+   //     }
+   //
+   //
+   // }
+   //     while( it_strm != eos && !strm.fail() && result.size() < max_buffer_size ){
+   //
+   //         if ( *it_strm == delimiter[match_index] )
+   //             if ( match_index == delimiter.size()-1 )
+   //                 return result;
+   //             else
+   //                 ++match_index;
+   //         else
+   //             match_index = 0;
+   //
+   //         result.append(*it_strm,1);
+   //         ++it_strm;
+   //     }
+   //
+   //
+   // }
+>>>>>>> 82d5dfa2af3ab2da8f62480d89681352579b6291
+   /*!
+    *  Return
+    */
+/*
+   std::vector<char> getNextPart(
+                                 const std::iterator & it_begin,
+                                 const std::iterator & it_end,
+                                 const std::vector<char> & pattern
+                                )
+   {
 
+<<<<<<< HEAD
+        LinearPatternMatch<char> lpm(pattern.begin(),pattern.end());
 
+        std::vector<char> result;
+=======
+        std::vector<char> result;
+        typedef typename std::vector<char> _Buffer;
+        _Buffer b;
+
+        if ( !strm.good() )
+          throw Tg::Exceptions::E_STREAM_READ_ERROR;
+
+        LinearPatternMatch<char, typename _Buffer::iterator> lpm(pattern);
+        typename _Buffer::iterator it ;
+        do{
+
+          std::fill(b.begin(),
+                      b.end(),
+                      0);
+
+          b.insert(b.begin(),
+                       std::istreambuf_iterator<char>(strm),
+                       std::istreambuf_iterator <char>());
+
+          it = std::find(b.begin(),b.end(),0);
+          //it = lpm.match(b.begin(),b.end()  );
+
+          result.insert(result.end(),b.end(),it);
+>>>>>>> 82d5dfa2af3ab2da8f62480d89681352579b6291
+
+        lpm.match(it_begin,it_end,it_end);
+
+        //result.insert(result.end(),it_begin,it);
+        return result;
+   }
+*/
 
     inline std::string  strToLower(std::string data)
     {

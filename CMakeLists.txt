@@ -17,12 +17,12 @@ endif()
 
 if(COMPILER_SUPPORTS_GGDB)
 #Here set debug c++ flags.
-	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb -O0 ")	
+        set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -ggdb -O0")
 else()
 	message("Can not generate debug symbols. Please use different C++ compiler.")
 endif()
 #Here set release c++ flags.
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 ")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2 -j8")
 
 set (TG_VERSION_MAJOR 0)
 set (TG_VERSION_MINOR 1)

@@ -86,6 +86,12 @@
       <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/csvfile.h">
          <Option target="tg"/>
       </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/filereader.cpp">
+         <Option target="tg"/>
+      </Unit>
+      <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/filereader.h">
+         <Option target="tg"/>
+      </Unit>
       <Unit filename="/home/akos/Dokumentumok/Projects/tg/src/main.cpp">
          <Option target="tg"/>
       </Unit>
